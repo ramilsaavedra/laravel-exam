@@ -17,6 +17,7 @@
                 <li>&copy; Pictureworks</li>
             </ul>
         </footer>
+        @include('flash::message')
     </div>
     <script>
         if ('addEventListener' in window) {

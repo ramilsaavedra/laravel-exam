@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('user/{id}', 'UserController@show')->name('show_user');
+Route::post('add-comment', 'CommentController@store')->name('store_comment');
