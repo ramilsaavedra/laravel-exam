@@ -10,7 +10,7 @@
     <body class="is-preload">
     <div id="wrapper">
         <section id="main">
-            <h1>Pictureworks Laravel Code Test</h1>
+            @yield('content')
         </section>
         <footer id="footer">
             <ul class="copyright">
