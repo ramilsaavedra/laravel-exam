@@ -67,12 +67,39 @@ class CommentController extends Controller
                 return back();
             };
 
-       
-            return back();
         } else {
             flash('Incorrect password')->error();
             return back()->withErrors(['password' => 'Incorrect password']);
         }
+    }
+
+    public function storeViaCommand(Request $request)
+    {
+        $validator =  Validator::make($request->all(),[
+            'user_id' => 'required',
+            'body' => 'required'
+        ]);
+
+
+        if($validator->fails()) {
+            return response()->json('Invalid input');
+        }
+
+        $user = User::find($request->user_id);
+
+        if(!$user){
+            return response()->json('User not found');
+        }
+
+        $comment = new Comment;
+        $comment->user_id = $request->user_id;
+        $comment->body = $request->body;
+
+        if ($comment->save()) {
+            return response()->json('Comment added');
+        } else {
+            return response()->json('Comment not added');
+        };
     }
 
     /**
