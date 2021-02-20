@@ -10,8 +10,7 @@
         <form action="{{route('store_comment')}}" method='POST'>
             @csrf
             <input type="hidden" name="user_id" id="" value='{{$user->id}}'>
-            <label for="comment">Write a Comment</label>
-            <textarea name="body" id="comment" cols="30" rows="4" required></textarea>
+            <textarea name="body" id="comment" cols="30" rows="4" placeholder='write a comment' required></textarea>
             <input style='margin-top: 10px' type="password" name='password' id="password" placeholder="enter password" required/>
             <input style='margin-top: 10px; width: 100%' type="submit" value='Add Comment' />
         </form>

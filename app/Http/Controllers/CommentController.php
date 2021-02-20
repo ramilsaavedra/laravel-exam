@@ -38,11 +38,18 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
-            'user_id' => 'required|exists:users,id',
+        $validator =  Validator::make($request->all(),[
+            'user_id' => 'required',
             'password' => 'required',
-            'comment' => 'required'
-        );
+            'body' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            flash('Please fill up all fields')->warning();
+            return back()
+                    ->withErrors($validator)
+                    ->withInput();
+        }
 
         $user = User::find($request->user_id);
         $hasher = app('hash');
@@ -64,7 +71,7 @@ class CommentController extends Controller
             return back();
         } else {
             flash('Incorrect password')->error();
-            return back();
+            return back()->withErrors(['password' => 'Incorrect password']);
         }
     }
 
