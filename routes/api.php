@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('add-comment-via-command', 'CommentController@storeViaCommand')->name('store_comment_via_command');
+Route::post('api/add-comment-via-command', 'CommentController@storeViaCommand')->name('store_comment_via_command');
