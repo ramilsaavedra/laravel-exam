@@ -69,7 +69,7 @@ class CommentController extends Controller
 
         } else {
             flash('Incorrect password')->error();
-            return back()->withErrors(['password' => 'Incorrect password']);
+            return back()->withInput(['body' => $request->body])->withErrors(['password' => 'Incorrect password']);
         }
     }
 

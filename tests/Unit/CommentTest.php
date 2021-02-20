@@ -16,6 +16,7 @@ class ExampleTest extends TestCase
     public function storeCommentWhenEnterCorrectPassword(){
         $generatedUser = factory(User::class)->create();
         $this->post('/add-comment', [
+            '_token' => csrf_token(),
             'user_id' => $generatedUser->id,
             'body' => 'test',
             'password' => '123' //correct password
